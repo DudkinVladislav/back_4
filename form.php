@@ -78,4 +78,5 @@ if (!empty($messages)) {
 		<input type="submit" disabled="disabled" name="submit" id="submit" value="Отправить" />
 		<br>
     </form>
+	 <img src="./img/PuTTY.png" alt="PuTTY">  
 </body></html>
