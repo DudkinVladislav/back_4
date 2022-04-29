@@ -34,6 +34,14 @@ if (!empty($messages)) {
 	  // Далее выводим форму отмечая элементы с ошибками классом error
 // и задавая начальные значения элементов ранее сохраненными.
 ?>
+	   <?php
+        if (!empty($_COOKIE[session_name()]) && !empty($_SESSION['login']))
+          print('<h3 id="form"> FORM<br/>(режим редактирования) </h3>');
+        else
+          print('<h3 id="form"> FORM </h3>');
+        ?>
+	  <br>
+	  <br>
 	<form action="" method="POST">
 		Имя:
 	<br>
@@ -78,5 +86,15 @@ if (!empty($messages)) {
 		<input type="submit" disabled="disabled" name="submit" id="submit" value="Отправить" />
 		<br>
     </form>
+	 <br>
+	   <ul>
+        <li>
+          <?php
+          if (!empty($_COOKIE[session_name()]) && !empty($_SESSION['login']))
+            print('<a href="./?quit=1" class = "gradient-button" title = "Log in">Выйти</a>');
+          else
+            print('<a href="login.php" class = "gradient-button"  title = "Log out">Войти</a>');
+          ?></li>
+      </ul>
 	 <img src="./img/PuTTY.png" alt="PuTTY">  
 </body></html>
