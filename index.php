@@ -13,6 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // Если есть параметр save, то выводим сообщение пользователю.
     setcookie('save', '', 100000); 
     $messages[] = 'Спасибо, результаты сохранены.';
+      // Если в куках есть пароль, то выводим сообщение.
+    if (!empty($_COOKIE['pass'])) {
+      $messages[] = sprintf('Вы можете <a href="login.php">войти</a> с логином <strong>%s</strong>
+        и паролем <strong>%s</strong> для изменения данных.',
+        strip_tags($_COOKIE['login']),
+        strip_tags($_COOKIE['pass']));
+    }
   }
 // Складываем признак ошибок в массив.
  $errors = array();
@@ -51,12 +58,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   }
 // Складываем предыдущие значения полей в массив, если есть.
   $values = array();
-  $values['name'] = empty($_COOKIE['name_value']) ? '' : $_COOKIE['name_value'];
-  $values['email'] = empty($_COOKIE['email_value']) ? '' : $_COOKIE['email_value'];
-  $values['date'] = empty($_COOKIE['date_value']) ? '' : $_COOKIE['date_value'];
+  $values['name'] = empty($_COOKIE['name_value']) ? '' : strip_tags($_COOKIE['name_value']);
+  $values['email'] = empty($_COOKIE['email_value']) ? '' :  strip_tags($_COOKIE['email_value']);
+  $values['date'] = empty($_COOKIE['date_value']) ? '' :  strip_tags($_COOKIE['date_value']);
   $values['pol'] = empty($_COOKIE['pol_value']) ? '' : $_COOKIE['pol_value'];
   $values['parts'] = empty($_COOKIE['parts_value']) ? '' : $_COOKIE['parts_value'];
-  $values['biography'] = empty($_COOKIE['biography_value']) ? '' : $_COOKIE['biography_value'];
+  $values['biography'] = empty($_COOKIE['biography_value']) ? '' :  strip_tags($_COOKIE['biography_value']);
   if(empty($_COOKIE['abilities_value']))
     $values['abilities'] = array();
   else
